@@ -1,0 +1,23 @@
+<div class="col-md-12">
+
+  <div class="form-job">
+    <%= link_to("Add a job", new_job_path, class: "btn btn-default pull-right") %>
+  </div>
+
+  <div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th> Title </th>
+        <th></th>
+        <th> Post Date </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render :partial => "job_item", :collection => @jobs, :as => :job %>
+    </tbody>
+  </table>
+  </div>
+
+</div>
