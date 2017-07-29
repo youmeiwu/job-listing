@@ -4,5 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :jobs
+  def admin?
+    email == "b@163.com"
+  end
+
+
 end
