@@ -10,7 +10,9 @@ before_action :authenticate_user!, only: [:new, :create]
     @job = Job.find(params[:job_id])
     @resume = Resume.new(resume_params)
     @resume.job = @job
+    @resume.user = current_user
     if @resume.save
+      flash[:notice] = "Submit resume successfully."
       redirect_to job_path(@job)
     else
       render :new
@@ -20,6 +22,6 @@ before_action :authenticate_user!, only: [:new, :create]
   private
 
   def resume_params
-    params.require(:resume).permit(:name, :attachment)
+    params.require(:resume).permit(:content, :attachment)
   end
 end
