@@ -1,8 +1,21 @@
 <div class="col-md-12">
-
-  <div class="form-job">
-    <%= link_to("Add a job", new_job_path, class: "btn btn-default pull-right") %>
+  <br><br>
+  <div class="pull-right">
+      <ul class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown">
+          <li class="btn btn-default">排序
+            <b class="caret"></b>
+          </li>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdwonMenuDivider">
+          <li><%= link_to("按照薪资下限排序", jobs_path(:order => "by_lower_bound")) %></li>
+          <li><%= link_to("按照薪资上限排序", jobs_path(:order => "by_upper_bound")) %></li>
+          <li><%= link_to("按照发表时间排序", jobs_path(:order => "by_created_at")) %></li>
+        </ul>
+      </ul>
   </div>
+
+  <br><br><br>
 
   <table class="table">
     <thead>
