@@ -1,8 +1,54 @@
 <div class="col-md-12">
   <h2><%= @job.title %></h2>
-  <p><%= simple_format(@job.description) %></p>
-  <p>Wage Upper Bound: <%= @job.wage_upper_bound %></p>
-  <p>Wage Lower Bound: <%= @job.wage_lower_bound %></p>
-  <p>Contact Email: <%= @job.contact_email %></p>
+
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Content</td>
+        <td>Wage Upper Bound</td>
+        <td>Wage Lower Bound</td>
+        <td>Contact</td>
+        <td>Resumes Quantity</td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= simple_format(@job.description) %></td>
+      <td><%= @job.wage_upper_bound %></td>
+      <td><%= @job.wage_lower_bound %></td>
+      <td><%= @job.contact_email %></td>
+      <td><%= @job.resumes.count %></td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+
+<div class="row">
+   <table class="table">
+     <thead>
+       <tr>
+         <th>Content</th>
+         <th>Attachment</th>
+       </tr>
+
+       <tbody>
+         <% @job.resumes.each do |resume| %>
+          <tr>
+            <td><%= resume.content %></td>
+            <td>
+              <% if resume.attachment.present? %>
+                <i class="fa fa-paperclip"></i>
+                <%= link_to("Download Resume", resume.attachment_url) %>
+                <% else %>
+                No attachment
+                <% end %>
+            </td>
+          </tr>
+          <% end %>
+       </tbody>
+     </thead>
+   </table>
+</div>
 
 </div>
